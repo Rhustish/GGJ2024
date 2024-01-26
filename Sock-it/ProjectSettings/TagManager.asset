@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Nail
+  - Wool
+  - MouseTrap
   layers:
   - Default
   - TransparentFX

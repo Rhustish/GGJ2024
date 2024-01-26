@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [System.Serializable]
     struct PlayerFactory
     {
+        public int suidhaga;
         public float speed;
         public float jumpForce;
         public bool isGrounded;
@@ -21,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         public bool isHurting;
     }
 
-    [SerializeField]PlayerFactory moja;
+    [SerializeField] PlayerFactory moja;
 
     private Rigidbody2D rb;
     private float horizontal;
@@ -55,7 +57,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(moja.health == 0){
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // StopCoroutine(escapeRoutine());
+            StopAllCoroutines();
+            moja.isHurting = false  ;
+        }
+
+        // Debug.Log(moja.suidhaga);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (moja.suidhaga > 0)
+            {
+                EventManager.OnHeal(25);
+                moja.suidhaga--;
+            }
+        }
+
+        if (moja.health <= 0)
+        {
             StartCoroutine(death());
         }
 
@@ -64,11 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         horizontal = Input.GetAxis("Horizontal");
-        if(horizontal!=0 && !moja.isHurting)
+        if (horizontal != 0 && !moja.isHurting)
         {
-            if(moja.isGrounded){
-                rb.velocity = new Vector2(x: horizontal* moja.speed, y: moja.jumpForce);
-            }else{
+            if (moja.isGrounded)
+            {
+                rb.velocity = new Vector2(x: horizontal * moja.speed, y: moja.jumpForce);
+            }
+            else
+            {
                 rb.velocity = new Vector2(x: horizontal * moja.speed, y: rb.velocity.y);
             }
         }
@@ -78,33 +101,46 @@ public class PlayerMovement : MonoBehaviour
             EventManager.OnTakeDamage(10);
             isTakeingDamage = false;
         }
-        
+
         //Debug.Log(horizontal);
 
         if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded && !moja.isHurting)
         {
-            rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce*2);
+            rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce * 2);
         }
 
         moja.isGrounded = Physics2D.Raycast(origin: transform.position, direction: Vector2.down, distance: rayCastLength, groundLayerMask);
 
     }
 
-    void OnCollisionEnter2D(Collision2D obj){
+    void OnCollisionEnter2D(Collision2D obj)
+    {
 
-        if(obj.gameObject.CompareTag("Nail")){
+        if (obj.gameObject.CompareTag("Nail"))
+        {
 
             StartCoroutine(cantMove());
-            GameManager.Instance.playerMov.isTakeingDamage = true;   
+            GameManager.Instance.playerMov.isTakeingDamage = true;
             Vector2 prev = rb.velocity;
-            rb.velocity = new Vector2(0,0);
-            rb.velocity = new Vector2(prev.x>0?5:-5,prev.y);
-
+            rb.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(prev.x > 0 ? 5 : -5, prev.y);
         }
-        // Debug.Log(obj.gameObject.name);
+        if (obj.gameObject.CompareTag("Wool"))
+        {
+            moja.suidhaga++;
+            Destroy(obj.gameObject);
+        }
+        if (obj.gameObject.CompareTag("MouseTrap"))
+        {
+            rb.velocity = new Vector2(0, 0);
+            moja.isHurting = true;
+            StartCoroutine(escapeRoutine());
+            Debug.Log("Rokooooo");
+        }
     }
 
-    void OnDrawGizmos(){
+    void OnDrawGizmos()
+    {
         Debug.DrawRay(transform.position, Vector2.down * rayCastLength, Color.green);
     }
 
@@ -118,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region Custom methods
-   
+
     public void TakeDamage(int damage)
     {
         moja.health -= damage;
@@ -129,18 +165,30 @@ public class PlayerMovement : MonoBehaviour
         moja.health += heal;
     }
 
-    IEnumerator cantMove(){
+    IEnumerator cantMove()
+    {
         moja.isHurting = true;
         yield return new WaitForSeconds(2);
         moja.isHurting = false;
     }
-    IEnumerator death(){
+    IEnumerator death()
+    {
         moja.isHurting = true;
         //ded ho gaya animation
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
-    }    
-    
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    IEnumerator escapeRoutine()
+    {
+        while (moja.health > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            EventManager.OnTakeDamage(1);
+        }
+    }
+
     #endregion
 
 }
