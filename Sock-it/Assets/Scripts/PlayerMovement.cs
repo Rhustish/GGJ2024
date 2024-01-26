@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
         public float jumpForce;
         public bool isGrounded;
         public int health;
+
+        public bool isHurting;
     }
 
     [SerializeField]PlayerFactory moja;
@@ -36,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.onTakeDamage += TakeDamage;
         EventManager.onHeal += Heal;
+        moja.isHurting = false;
     }
 
     // Start is called before the first frame update
@@ -56,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         horizontal = Input.GetAxis("Horizontal");
-        if(horizontal!=0)
+        if(horizontal!=0 && !moja.isHurting)
         {
             if(moja.isGrounded){
                 rb.velocity = new Vector2(x: horizontal* moja.speed, y: moja.jumpForce);
@@ -73,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log(horizontal);
 
-        if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded && !moja.isHurting)
         {
             rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce*2);
         }
@@ -81,6 +85,21 @@ public class PlayerMovement : MonoBehaviour
         moja.isGrounded = Physics2D.Raycast(origin: transform.position, direction: Vector2.down, distance: rayCastLength, groundLayerMask);
 
     }
+
+    void OnCollisionEnter2D(Collision2D obj){
+
+        if(obj.gameObject.CompareTag("Nail")){
+
+            StartCoroutine(cantMove());
+            GameManager.Instance.playerMov.isTakeingDamage = true;   
+            Vector2 prev = rb.velocity;
+            rb.velocity = new Vector2(0,0);
+            rb.velocity = new Vector2(prev.x>0?5:-5,prev.y);
+
+        }
+        // Debug.Log(obj.gameObject.name);
+    }
+
     void OnDrawGizmos(){
         Debug.DrawRay(transform.position, Vector2.down * rayCastLength, Color.green);
     }
@@ -104,6 +123,12 @@ public class PlayerMovement : MonoBehaviour
     public void Heal(int heal)
     {
         moja.health += heal;
+    }
+
+    IEnumerator cantMove(){
+        moja.isHurting = true;
+        yield return new WaitForSeconds(2);
+        moja.isHurting = false;
     }
         
     #endregion
