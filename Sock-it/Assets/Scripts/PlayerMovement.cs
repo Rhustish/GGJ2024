@@ -31,20 +31,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(x: horizontal * moja.playerSpeed, y: rb.velocity.y);
         horizontal = Input.GetAxis("Horizontal");
+        if(horizontal!=0)
+        {
+            if(moja.isGrounded){
+                rb.velocity = new Vector2(x: horizontal* moja.playerSpeed, y: moja.jumpForce);
+            }else{
+                rb.velocity = new Vector2(x: horizontal * moja.playerSpeed, y: rb.velocity.y);
+            }
+  
+            
+            
+        }
+        
+        
         //Debug.Log(horizontal);
 
         if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded)
         {
-            rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce);
+            rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce*2);
         }
 
         moja.isGrounded = Physics2D.Raycast(origin: transform.position, direction: Vector2.down, distance: rayCastLength, groundLayerMask);
 
     }
-    void OnDrawGizmos()
-    {
+    void OnDrawGizmos(){
         Debug.DrawRay(transform.position, Vector2.down * rayCastLength, Color.green);
     }
 }
