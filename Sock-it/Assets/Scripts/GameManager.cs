@@ -60,14 +60,30 @@ public class GameManager : MonoBehaviour
 
     #region Custom methods
 
+    public void CheckAndChangeHealthColor()
+    {
+        if(healthBar.value >=70)
+        {
+            healthBar.fillRect.GetComponent<Image>().color = Color.green;
+        }else if(healthBar.value < 70 && healthBar.value > 30)
+        {
+            healthBar.fillRect.GetComponent<Image>().color = Color.yellow;
+        }else
+        {
+            healthBar.fillRect.GetComponent<Image>().color = Color.red;
+        }
+    }
+
     public void ReduceHealth(int damage)
     {
         healthBar.value -= damage;
+        CheckAndChangeHealthColor();
     }
 
     public void IncreaseHealth(int heal)
     {
         healthBar.value += heal;
+        CheckAndChangeHealthColor();
     }
 
     #endregion
