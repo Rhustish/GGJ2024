@@ -137,6 +137,9 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(escapeRoutine());
             Debug.Log("Rokooooo");
         }
+         if (obj.gameObject.CompareTag("WalterBlue")){
+            StartCoroutine(death());  
+         }
     }
 
     void OnDrawGizmos()
@@ -173,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator death()
     {
+        rb.velocity = new Vector2(0,0);
         moja.isHurting = true;
         //ded ho gaya animation
         yield return new WaitForSeconds(5);
@@ -184,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
     {
         while (moja.health > 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             EventManager.OnTakeDamage(1);
         }
     }
