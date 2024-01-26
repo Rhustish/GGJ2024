@@ -294,10 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4eda1f7aadc04b5aa977aa760644d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 2
-  jumpForce: 2
-  isGrounded: 0
-  rayCastLength: 2
+  moja:
+    playerSpeed: 4
+    jumpForce: 5
+    isGrounded: 0
+  rayCastLength: 3
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
