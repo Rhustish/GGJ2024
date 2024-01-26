@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -54,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(moja.health == 0){
+            StartCoroutine(death());
+        }
 
         // giving damage to player
         //GameManager.Instance.playerMov.isTakeingDamage = true;
@@ -130,7 +134,13 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(2);
         moja.isHurting = false;
     }
-        
+    IEnumerator death(){
+        moja.isHurting = true;
+        //ded ho gaya animation
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+    }    
+    
     #endregion
 
 }
