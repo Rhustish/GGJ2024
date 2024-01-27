@@ -60,8 +60,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.F)){
-            SceneManager.LoadScene("RockPaperScissors",LoadSceneMode.Additive);
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SceneManager.LoadScene("RockPaperScissors", LoadSceneMode.Additive);
 
         }
 
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // StopCoroutine(escapeRoutine());
             StopAllCoroutines();
-            moja.isHurting = false  ;
+            moja.isHurting = false;
         }
 
         // Debug.Log(moja.suidhaga);
@@ -143,11 +144,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             moja.isHurting = true;
             StartCoroutine(escapeRoutine());
-            Debug.Log("Rokooooo");
+            // Debug.Log("Rokooooo");
         }
-         if (obj.gameObject.CompareTag("WalterBlue")){
-            StartCoroutine(death());  
-         }
+        if (obj.gameObject.CompareTag("WalterBlue"))
+        {
+            StartCoroutine(death());
+        }
+        if(obj.gameObject.CompareTag("Wmachine")){
+            TakeDamage(40);
+        }
     }
 
     void OnDrawGizmos()
@@ -176,6 +181,11 @@ public class PlayerMovement : MonoBehaviour
         moja.health += heal;
     }
 
+    public void Stagger()
+    {
+        StartCoroutine(cantMove());
+    }
+
     IEnumerator cantMove()
     {
         moja.isHurting = true;
@@ -184,7 +194,8 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator death()
     {
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
+        TakeDamage(100);
         moja.isHurting = true;
         //ded ho gaya animation
         yield return new WaitForSeconds(5);
