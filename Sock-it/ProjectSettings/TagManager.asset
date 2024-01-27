@@ -8,6 +8,7 @@ TagManager:
   - Wool
   - MouseTrap
   - WalterBlue
+  - Bullet
   layers:
   - Default
   - TransparentFX
