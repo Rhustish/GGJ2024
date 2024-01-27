@@ -15,6 +15,7 @@ TagManager:
   - Stone
   - Plug
   - MachineAfterDeath
+  - CockRoach
   layers:
   - Default
   - TransparentFX
