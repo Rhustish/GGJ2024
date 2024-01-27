@@ -13,5 +13,13 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        StartCoroutine(bultdie());
+
+    }
+
+    IEnumerator bultdie()
+    {
+        yield return new WaitForSeconds(4);
+        Destroy(gameObject);
     }
 }
