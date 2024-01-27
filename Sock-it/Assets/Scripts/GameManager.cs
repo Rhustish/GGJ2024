@@ -15,6 +15,22 @@ public class GameManager : MonoBehaviour
 
     public Slider healthBar;
 
+    public enum GameState
+    {
+        Playing,
+        Paused,
+        GameOver
+    }
+
+    public enum PlayerState
+    {
+        Alive,
+        Dead
+    }
+
+    public GameState gameState;
+    public PlayerState playerState;
+
     #endregion
 
     #region Unity callbacks
@@ -84,6 +100,11 @@ public class GameManager : MonoBehaviour
     {
         healthBar.value += heal;
         CheckAndChangeHealthColor();
+    }
+
+    public void OnPlayerDeath()
+    {
+        // do something
     }
 
     #endregion

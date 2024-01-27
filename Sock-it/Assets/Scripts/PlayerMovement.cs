@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.onTakeDamage += TakeDamage;
         EventManager.onHeal += Heal;
-        moja.isHurting = false;
+        EventManager.onPlayerDeath += DeathFun;
     }
 
     // Start is called before the first frame update
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         isTakeingDamage = false;
         moja.health = 100;
-
+        moja.isHurting = false;
     }
 
     // Update is called once per frame
@@ -83,9 +83,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (moja.health <= 0)
+        if (moja.health <= 0 && GameManager.Instance.playerState != GameManager.PlayerState.Dead)
         {
-            StartCoroutine(death());
+            EventManager.OnPlayerDeath();
         }
 
         // giving damage to player
@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (obj.gameObject.CompareTag("WalterBlue"))
         {
-            StartCoroutine(death());
+            EventManager.OnPlayerDeath();
         }
         if(obj.gameObject.CompareTag("Wmachine")){
             EventManager.OnTakeDamage(40);
@@ -167,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.onTakeDamage -= TakeDamage;
         EventManager.onHeal -= Heal;
+        EventManager.onPlayerDeath -= DeathFun;
     }
 
     #endregion
@@ -189,6 +190,15 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(cantMove());
     }
 
+    public void DeathFun()
+    {
+        GameManager.Instance.playerState = GameManager.PlayerState.Dead;
+        rb.velocity = new Vector2(0, 0);
+        moja.health = 0;
+        moja.isHurting = true;
+        StartCoroutine(death());
+    }
+
     IEnumerator cantMove()
     {
         moja.isHurting = true;
@@ -197,13 +207,9 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator death()
     {
-        rb.velocity = new Vector2(0, 0);
-        TakeDamage(100);
-        moja.isHurting = true;
         //ded ho gaya animation
         yield return new WaitForSeconds(5);
-        Destroy(gameObject);
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     IEnumerator escapeRoutine()
@@ -214,6 +220,8 @@ public class PlayerMovement : MonoBehaviour
             EventManager.OnTakeDamage(1);
         }
     }
+
+
 
     #endregion
 

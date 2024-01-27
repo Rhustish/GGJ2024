@@ -57,10 +57,10 @@ public class MashingWashine : MonoBehaviour
     }
 
     void thew(){
-        GameObject newDet = Instantiate(detergent,new Vector3(transform.position.x-3.0f,transform.position.y-2.0f,0),Quaternion.identity);
+        GameObject newDet = Instantiate(detergent, gameObject.transform.GetChild(0).position, Quaternion.identity);
         // Debug.Log(transform.position.);
         Rigidbody2D newDetRb = newDet.GetComponent<Rigidbody2D>();
-        newDetRb.velocity = new Vector2(Random.Range(-5f,-2f),Random.Range(1f,5f));
+        newDetRb.velocity = new Vector2(Random.Range(-5f,-2f),Random.Range(5f,10f));
     }
 
     void move(){

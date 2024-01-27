@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class EventManager : MonoBehaviour
 
     public delegate void Heal(int heal);
     public static event Heal onHeal;
+
+    public delegate void PlayerDeath();
+    public static event PlayerDeath onPlayerDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +37,17 @@ public class EventManager : MonoBehaviour
 
     public static void OnHeal(int heal)
     {
-        if(onHeal != null)
+        if (onHeal != null)
         {
             onHeal(heal);
+        }
+    }
+
+    public static void OnPlayerDeath()
+    {
+        if (onPlayerDeath != null)
+        {
+            onPlayerDeath();
         }
     }
 
