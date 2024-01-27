@@ -151,7 +151,10 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(death());
         }
         if(obj.gameObject.CompareTag("Wmachine")){
-            TakeDamage(40);
+            EventManager.OnTakeDamage(40);
+        }
+        if(obj.gameObject.CompareTag("Detergent")){
+            EventManager.OnTakeDamage(30);
         }
     }
 
