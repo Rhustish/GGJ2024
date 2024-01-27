@@ -31,6 +31,7 @@ public class MashingWashine : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.mass=100;
         bhai.health = 200;
         // player = GameObject.FindGameObjectWithTag("Player");
         bhai.isAttacking = false;
@@ -66,7 +67,16 @@ public class MashingWashine : MonoBehaviour
     void move(){
         rb.velocity = new Vector2(5*Random.Range(-1.0f,1.0f),5*Random.Range(-1.0f,1.0f));
     }
-
+    
+    public void dies(){
+        Debug.Log("yahoooooooooooooooooo");
+        StopAllCoroutines();
+        bhai.isAttacking = true;
+        bhai.isMoving = true;
+        rb.velocity = new Vector2(0,0);
+        StartCoroutine(deathBuffer());
+        gameObject.tag = "MachineAfterDeath";
+    }
 
     void rumbledry(){
 
@@ -86,6 +96,11 @@ public class MashingWashine : MonoBehaviour
         bhai.isMoving = true;
         yield return new WaitForSeconds(2);
         bhai.isMoving = false;
+    }
+    IEnumerator deathBuffer(){
+        //dead animation;
+        yield return new WaitForSeconds(5);
+        // Destroy(gameObject);
     }
 }
 

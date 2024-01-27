@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     struct PlayerFactory
     {
         public int suidhaga;
+        public bool inPlug  ;
 
         public int cheese;
         public int stone;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         moja.health = 100;
         moja.isHurting = false;
         moja.cheese = 0;
+        moja.inPlug = false;
         moja.stone = 0;
     }
 
@@ -65,7 +67,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(moja.stone);
+        if(moja.inPlug && Input.GetKeyDown(KeyCode.Q)){
+            killMachine();
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -171,6 +175,15 @@ public class PlayerMovement : MonoBehaviour
             moja.stone++;
             Destroy(obj.gameObject);
         }
+        if(obj.gameObject.CompareTag("Plug")){
+            moja.inPlug = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D obj){
+        if(obj.gameObject.CompareTag("Plug")){
+            moja.inPlug = false;
+        }
     }
 
     void OnDrawGizmos()
@@ -189,6 +202,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region Custom methods
+
+    public void killMachine(){
+        MashingWashine machine = GameObject.FindGameObjectWithTag("Wmachine").GetComponent<MashingWashine>();
+        machine.dies();
+        Debug.Log("machine -- ");
+    }
 
     public void TakeDamage(int damage)
     {
