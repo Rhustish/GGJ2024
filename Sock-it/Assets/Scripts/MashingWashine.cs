@@ -79,7 +79,7 @@ public class MashingWashine : MonoBehaviour
 
     IEnumerator moveBuffer(){
         bhai.isMoving = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         bhai.isMoving = false;
     }
 }
