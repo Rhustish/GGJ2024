@@ -102,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
         // giving damage to player
         //GameManager.Instance.playerMov.isTakeingDamage = true;
 
-
         horizontal = Input.GetAxis("Horizontal");
         if (horizontal != 0 && !moja.isHurting)
         {
@@ -177,6 +176,9 @@ public class PlayerMovement : MonoBehaviour
         }
         if(obj.gameObject.CompareTag("Plug")){
             moja.inPlug = true;
+        }
+        if(obj.gameObject.CompareTag("CockRoach")){
+            EventManager.OnTakeDamage(35);
         }
     }
 
