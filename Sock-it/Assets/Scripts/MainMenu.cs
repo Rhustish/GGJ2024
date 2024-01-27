@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public void onPlay()
     {
         // Debug.Log("ho gya");
-        SceneManager.LoadScene("PresentLevel");
+        SceneManager.LoadScene("Level");
     }
 
     public void onQuit()
