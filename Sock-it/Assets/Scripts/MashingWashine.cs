@@ -23,7 +23,7 @@ public class MashingWashine : MonoBehaviour
 
     //is bhai ke attacks
 
-    //spits detergent
+    //spits detergent --done
     //rumbledry --done
     //touchmenot --done
 

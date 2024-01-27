@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     struct PlayerFactory
     {
         public int suidhaga;
+
+        public int cheese;
         public float speed;
         public float jumpForce;
         public bool isGrounded;
@@ -54,11 +56,14 @@ public class PlayerMovement : MonoBehaviour
         isTakeingDamage = false;
         moja.health = 100;
         moja.isHurting = false;
+        moja.cheese = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(moja.cheese);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -155,6 +160,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if(obj.gameObject.CompareTag("Detergent")){
             EventManager.OnTakeDamage(30);
+        }
+        if(obj.gameObject.CompareTag("Cheese")){
+            moja.cheese++;
+            Destroy(obj.gameObject);
         }
     }
 
