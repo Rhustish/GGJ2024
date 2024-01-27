@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         public int suidhaga;
 
         public int cheese;
+        public int stone;
         public float speed;
         public float jumpForce;
         public bool isGrounded;
@@ -57,13 +58,14 @@ public class PlayerMovement : MonoBehaviour
         moja.health = 100;
         moja.isHurting = false;
         moja.cheese = 0;
+        moja.stone = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Debug.Log(moja.cheese);
+        Debug.Log(moja.stone);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -163,6 +165,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if(obj.gameObject.CompareTag("Cheese")){
             moja.cheese++;
+            Destroy(obj.gameObject);
+        }
+        if(obj.gameObject.CompareTag("Stone")){
+            moja.stone++;
             Destroy(obj.gameObject);
         }
     }

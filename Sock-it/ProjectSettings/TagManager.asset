@@ -11,6 +11,8 @@ TagManager:
   - Bullet
   - Wmachine
   - Detergent
+  - Cheese
+  - Stone
   layers:
   - Default
   - TransparentFX
