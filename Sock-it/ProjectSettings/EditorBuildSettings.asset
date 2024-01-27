@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 348aaeeedfa14dbd0a5b984eebf66232
+  - enabled: 1
+    path: Assets/Scenes/RockPaperScissors.unity
+    guid: 19bfc65a6f5b734d899b2a911a76900b
   m_configObjects: {}

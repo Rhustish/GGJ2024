@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isTakeingDamage;
 
+    public Camera mainLevelCamera;
+
     #endregion
 
 
@@ -57,6 +59,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.F)){
+            SceneManager.LoadScene("RockPaperScissors",LoadSceneMode.Additive);
+
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             // StopCoroutine(escapeRoutine());
