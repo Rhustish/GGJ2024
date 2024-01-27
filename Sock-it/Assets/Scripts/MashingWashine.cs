@@ -7,6 +7,9 @@ public class MashingWashine : MonoBehaviour
 {
 
     private Rigidbody2D rb;
+    // public GameObject player;
+    public GameObject detergent;
+
     struct MachineFactory
     {
         public float health;
@@ -21,14 +24,15 @@ public class MashingWashine : MonoBehaviour
     //is bhai ke attacks
 
     //spits detergent
-    //rumbledry
-    //touchmenot
+    //rumbledry --done
+    //touchmenot --done
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bhai.health = 200;
+        // player = GameObject.FindGameObjectWithTag("Player");
         bhai.isAttacking = false;
     }
 
@@ -53,8 +57,10 @@ public class MashingWashine : MonoBehaviour
     }
 
     void thew(){
-        //buttel
-        Debug.Log("asdf");
+        GameObject newDet = Instantiate(detergent,new Vector3(transform.position.x-3.0f,transform.position.y-2.0f,0),Quaternion.identity);
+        // Debug.Log(transform.position.);
+        Rigidbody2D newDetRb = newDet.GetComponent<Rigidbody2D>();
+        newDetRb.velocity = new Vector2(Random.Range(-5f,-2f),Random.Range(1f,5f));
     }
 
     void move(){
@@ -63,7 +69,6 @@ public class MashingWashine : MonoBehaviour
 
 
     void rumbledry(){
-
 
         PlayerMovement pscript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         pscript.Stagger();
