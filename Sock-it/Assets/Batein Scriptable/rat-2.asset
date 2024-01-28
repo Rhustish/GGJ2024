@@ -12,5 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
   m_Name: rat-2
   m_EditorClassIdentifier: 
-  baatein: []
-  baatList: []
+  baatList:
+  - speaker: {fileID: 21300000, guid: c5ca29d48dc2add448bd7fa4a86bf31c, type: 3}
+    baat: 'You have returned? How many times must I turn you away before you realise
+      that your efforts are futile? '
+    audioClip: {fileID: 8300000, guid: a5c8b53ccf7879541a888a308af037d4, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: 'Not even if I give you this? '
+    audioClip: {fileID: 8300000, guid: 8d3a40b957a4bfe4f9f24c136a7539be, type: 3}
+  - speaker: {fileID: 21300000, guid: c5ca29d48dc2add448bd7fa4a86bf31c, type: 3}
+    baat: "Hmm\u2026 You make a very convincing argument. Maybe I can make an exception
+      this time\u2026"
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Bro is corrupt.
+    audioClip: {fileID: 8300000, guid: 9a7608b75d58af446b0220653d029c12, type: 3}
+  - speaker: {fileID: 21300000, guid: c5ca29d48dc2add448bd7fa4a86bf31c, type: 3}
+    baat: Hmm? What did you say?
+    audioClip: {fileID: 8300000, guid: 680490c00b4ff49488a60aaa570d246a, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "Nothing\u2026nothing\u2026"
+    audioClip: {fileID: 8300000, guid: b2f18349c669d5445ab80110b4cdc07c, type: 3}

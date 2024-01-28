@@ -12,5 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
   m_Name: kachha-2
   m_EditorClassIdentifier: 
-  baatein: []
-  baatList: []
+  baatList:
+  - speaker: {fileID: 21300000, guid: cdfeaa6b8735232499d932a71f48c91f, type: 3}
+    baat: you seemth like u got what i asketh thou for
+    audioClip: {fileID: 8300000, guid: 4a0b616267f7f0e4a85c59397056e314, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: yuh
+    audioClip: {fileID: 8300000, guid: 54247a0f985303d499c30c15e12500dd, type: 3}
+  - speaker: {fileID: 21300000, guid: cdfeaa6b8735232499d932a71f48c91f, type: 3}
+    baat: Astoundeth! Marveleth! Sensationeth!
+    audioClip: {fileID: 8300000, guid: aa8566e8c7b16f444833a8973aade5fa, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Here ya go, now tell me the whereabouts
+    audioClip: {fileID: 8300000, guid: 5f7c5e4b5aad48a49b81487d256f86a5, type: 3}
+  - speaker: {fileID: 21300000, guid: cdfeaa6b8735232499d932a71f48c91f, type: 3}
+    baat: "All right. First thou needeth to headst to the kitchen\u2026 and from
+      there thou shall be able to access the balcony. "
+    audioClip: {fileID: 8300000, guid: 642b76aee2c920742b1c860f82c6c814, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: That was actually helpful. Thanks.
+    audioClip: {fileID: 8300000, guid: 68642f8ccd8b09244bb14a71aadd6d13, type: 3}
+  - speaker: {fileID: 21300000, guid: cdfeaa6b8735232499d932a71f48c91f, type: 3}
+    baat: 'No problem! Oh and! Me hath patched myself up. Thou shall have this. '
+    audioClip: {fileID: 8300000, guid: 5dd1a46b377902a43ad0da5d394f8b4d, type: 3}

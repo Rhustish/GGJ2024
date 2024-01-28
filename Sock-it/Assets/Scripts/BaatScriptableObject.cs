@@ -10,6 +10,7 @@ public class BaatScriptableObject : ScriptableObject
     {
         public Sprite speaker;
         public string baat;
+        public AudioClip audioClip;
     }
 
     public List<baatStruct> baatList = new List<baatStruct>();

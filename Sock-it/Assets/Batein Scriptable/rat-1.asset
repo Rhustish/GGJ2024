@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
   m_Name: rat-1
   m_EditorClassIdentifier: 
-  baatein: []
-  baatList: []
+  baatList:
+  - speaker: {fileID: 21300000, guid: c5ca29d48dc2add448bd7fa4a86bf31c, type: 3}
+    baat: "STOP! I\u2019m rat the guardian of the balcony. I can\u2019t let you pass
+      without a permit. "
+    audioClip: {fileID: 8300000, guid: 0a7f6a9de8cc80d40b1827a61fd54cb8, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: '*Rolls his eyes*'
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
+  - speaker: {fileID: 21300000, guid: c5ca29d48dc2add448bd7fa4a86bf31c, type: 3}
+    baat: Now SHOO!
+    audioClip: {fileID: 8300000, guid: dafaaaf3776e5aa4faec5d409f35f0e3, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "Looks like I\u2019ll have to find a way around."
+    audioClip: {fileID: 8300000, guid: 825401e421626fc4382f2595085933ee, type: 3}

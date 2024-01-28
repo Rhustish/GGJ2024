@@ -16,6 +16,7 @@ TagManager:
   - Plug
   - MachineAfterDeath
   - CockRoach
+  - BedRoomEnding
   layers:
   - Default
   - TransparentFX

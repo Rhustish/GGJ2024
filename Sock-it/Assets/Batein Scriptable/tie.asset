@@ -15,9 +15,13 @@ MonoBehaviour:
   baatList:
   - speaker: {fileID: 21300000, guid: 0b65788f87c5aa442a25042d0f8bd7ac, type: 3}
     baat: You wanna know why you would never be able to beat me?
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: why?
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: 0b65788f87c5aa442a25042d0f8bd7ac, type: 3}
     baat: 'cuz it''s a tie :) '
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: "\u2026"
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}

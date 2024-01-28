@@ -15,8 +15,14 @@ MonoBehaviour:
   baatList:
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: Are you ready?
+    audioClip: {fileID: 8300000, guid: f331a81b73157a9488ad6ee70d2f5650, type: 3}
   - speaker: {fileID: 21300000, guid: 31c9d405dc2268147aae7b1882bc0f87, type: 3}
     baat: 'LET THE BATTLE BEGIN '
+    audioClip: {fileID: 8300000, guid: b2f5bffb3c10e414fabe94ace01d8a15, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: places rock
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: 3af762da33db63148a5bb5082c0c97b8, type: 3}
     baat: "T-That\u2026 That is a f-forbidden move. I did not expect you to be this
       experienced. "
+    audioClip: {fileID: 8300000, guid: 974cb27e950133c48934d23cb654b3be, type: 3}

@@ -15,36 +15,52 @@ MonoBehaviour:
   baatList:
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: HA HA HA, You hath finally arriveth for me help!
+    audioClip: {fileID: 8300000, guid: 85af76d000200a045ac87035a79479ad, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: "uh.. But I never asked for any\u2026?"
+    audioClip: {fileID: 8300000, guid: 4af3269db3b2ded4eb5f72bc32100c55, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: Fear not Child! A curious mind always wandereth.
+    audioClip: {fileID: 8300000, guid: 4acb70971b559094f8ace51efcc6dad7, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: Look wal-mart shakespeare , I have stuff to do, so go enact your play somewhere
       else
+    audioClip: {fileID: 8300000, guid: e9d0b7ff4d0235d4b96a866bd305775d, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: " Don\u2019t thou want to know where thou lovely sockette be?"
+    audioClip: {fileID: 8300000, guid: cb85bc07a29132e4f91348e4442818ae, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: '?'
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: (Knickers snickers) hehehe I hath trappeth thou attention
+    audioClip: {fileID: 8300000, guid: e36347ef3413eb8428540415479f64d0, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: Alright you have 2 minutes.
+    audioClip: {fileID: 8300000, guid: 089eb99ade84a16499aa8ba59e36a1b3, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: Nuh uh uhh. Not that easy
+    audioClip: {fileID: 8300000, guid: dab1cf25974ccbb4cbe993f99611b0e5, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: '?'
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: "Thou shall do me A favour\u2026 "
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: "Sighs, I\u2019m Listening"
+    audioClip: {fileID: 8300000, guid: eb5218b3827f1384eb22c490c4cc081c, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: Aye, woe is me, a patchwork quilt of holes! My seams sing opera, my threads,
       they fray in dole! Stitch me, good bard, or to oblivion I roll!
+    audioClip: {fileID: 8300000, guid: 650d21667c93cb34694181a3e6ca59a1, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: "\u2026what?"
+    audioClip: {fileID: 8300000, guid: 945eae0fb4a61594ba4c996df945ce59, type: 3}
   - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
     baat: "(sad) just get me a needle and thread and i\u2019ll give you the directions
       to sockette."
+    audioClip: {fileID: 8300000, guid: aa393c80cfcd5e04ca9aeb638fd9e66f, type: 3}
   - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
     baat: aight
+    audioClip: {fileID: 8300000, guid: cec4eebe7d148104ba1c7f57bc4b184a, type: 3}

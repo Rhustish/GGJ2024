@@ -219,6 +219,12 @@ public class PlayerMovement : MonoBehaviour
     {
         switch(obj.gameObject.name)
         {
+
+            case "BedroomEnding":
+                GameManager.Instance.audioSource.clip = GameManager.Instance.audioClips[1];
+                GameManager.Instance.defaultClip = GameManager.Instance.audioClips[1];
+                break;
+
             case "Kachha":
                 if (moja.suidhaga > 0)
                 {
@@ -233,8 +239,19 @@ public class PlayerMovement : MonoBehaviour
             case "Mr. Tie":
                 EventManager.OnInteract(GameManager.Interaction.tie);
                 break;
-            
-            //case ""
+            case "Scissors":
+                if(moja.stone > 0)
+                {
+                    EventManager.OnInteract(GameManager.Interaction.scissors2);
+
+                }else
+                {
+                    moja.stone--;
+                    EventManager.OnInteract(GameManager.Interaction.scissors1);
+
+                }
+                break;
+
 
         }
     }

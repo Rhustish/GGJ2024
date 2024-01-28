@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
 
     public BaatCheetHelper helper;
 
+    public AudioSource audioSource;
+
+    public AudioClip defaultClip;
+
+    public List<AudioClip> audioClips;
+
+    public AudioSource voiceLineSource;
+
+
     public enum GameState
     {
         Playing,
@@ -79,8 +88,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         healthBar.value = 100;
         helper = GetComponent<BaatCheetHelper>();
+        audioSource.clip = audioClips[0];
+        defaultClip = audioClips[0];
+        voiceLineSource = transform.GetChild(0).GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -114,31 +128,65 @@ public class GameManager : MonoBehaviour
         {
             case Interaction.tie:
                 helper.StartInteraction(scriptObjects[0]);
+                // no change in audio
                 break;
             case Interaction.Kachha1:
                 helper.StartInteraction(scriptObjects[1]);
+                ChangeAudio(audioClips[6]);
+                // play audio - professor nickers
                 break;
             case Interaction.scissors1:
                 helper.StartInteraction(scriptObjects[2]);
+                // play audio - bossfight
                 break;
             case Interaction.scissors2:
                 helper.StartInteraction(scriptObjects[3]);
+                // play audio - scissor stop backspin
                 break;
             case Interaction.magicalMoja:
                 helper.StartInteraction(scriptObjects[4]);
+                // play audio - magical moja
                 break;
             case Interaction.Kachha2:
                 helper.StartInteraction(scriptObjects[5]);
+                // play audio - professor nickers
                 break;
             case Interaction.rat1:
                 helper.StartInteraction(scriptObjects[6]);
+                // no change in audio
+                // use bedroom
                 break;
             case Interaction.rat2:
                 helper.StartInteraction(scriptObjects[7]);
+                // no change in audio
+                // use bedroom
                 break;
 
         }
 
+    }
+
+    public void ChangeAudio(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    public void ChangeVoiceClip(AudioClip voiceClip)
+    {
+        voiceLineSource.clip = voiceClip;
+        voiceLineSource.Play();
+    }
+
+    public void RemoveVoiceClip()
+    {
+        voiceLineSource.clip = null;
+    }
+
+    public void ChangeAudioToDefault()
+    {
+        audioSource.clip = defaultClip;
+        audioSource.Play();
     }
 
     public void EndInteraction()

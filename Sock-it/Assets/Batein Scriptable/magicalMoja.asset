@@ -12,5 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
   m_Name: magicalMoja
   m_EditorClassIdentifier: 
-  baatein: []
-  baatList: []
+  baatList:
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: Who goes there?
+    audioClip: {fileID: 8300000, guid: c253ac85f50e5484c8594c0c84f1e339, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Where do these jokers come from? *sighs*
+    audioClip: {fileID: 8300000, guid: f1ff70b5f77629b4baef45438b679fcf, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: "A mere joker?! A mere joker you say? You think I\u2019m a fool?? I\u2019m
+      one of those nincompoops you meet everyday? One of those fools who forget their
+      towel outside before entering the shower? "
+    audioClip: {fileID: 8300000, guid: 91388730970e73c4ab5d77cf7cdec73f, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Aight dude, just lemme pass.
+    audioClip: {fileID: 8300000, guid: a98d8b0037150c941b0b610049bc14b0, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: No! You have angered my greatness. You shall now face my full wrath.
+    audioClip: {fileID: 8300000, guid: 5823ea1faea1fa048af5e38e136c8ac7, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "You can\u2019t be any worse than a scissor can you?"
+    audioClip: {fileID: 8300000, guid: 852cafb47bae915429d1b0770516b399, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: '?'
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Never mind. Go ahead.
+    audioClip: {fileID: 8300000, guid: 9cff45f989dd3c244b24e15c342fbe50, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: What has an eye but cannot see, a head but cannot think, and a mouth but
+      cannot speak?
+    audioClip: {fileID: 8300000, guid: cad55f10ed16ce149bf45af61c8e219b, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: A needle and thread
+    audioClip: {fileID: 8300000, guid: fdc6f3489569cc546b1a32209e1e5233, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: You are wise! You have withstood the testament of the great and magnificent
+      Magical Moses.
+    audioClip: {fileID: 8300000, guid: 643d81960da947d4695ca60c8eb7b0fe, type: 3}
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "Uhh- Yea\u2026 what now?"
+    audioClip: {fileID: 8300000, guid: 12c5be2542e1472439bcf12bd449e232, type: 3}
+  - speaker: {fileID: 21300000, guid: 19604168478dc724bb90a1a7c36678c7, type: 3}
+    baat: 'Here you go. A gift to commemorate this FEAT! AND REMEMBER A SOCK CAN
+      DO WHATEVER THEY WANT IF THEY PUT THEIR MIND TO IT. '
+    audioClip: {fileID: 8300000, guid: f058ee1374b2e1f4f87873528b95ff77, type: 3}

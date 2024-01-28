@@ -18,15 +18,17 @@ public class Baat
 
     private Action onActionCallback = null;
     private Action DeactivateCall = null;
+    private AudioClip voiceLine = null;
 
     private Sprite speaker = null;
 
-    public Baat(string baat, Sprite bolnewaala, Action deactivateCallBack, Action callback = null)
+    public Baat(string baat, Sprite bolnewaala, AudioClip voiceAudio, Action deactivateCallBack, Action callback = null)
     {
         onActionCallback = callback;
         currentBaat = baat;
         speaker = bolnewaala;
         DeactivateCall = deactivateCallBack;
+        voiceLine = voiceAudio;
     }
 
     public void Callback()
@@ -67,6 +69,11 @@ public class Baat
     public Sprite GetSpeaker()
     {
            return speaker;
+    }
+
+    public AudioClip GetVoiceLine()
+    {
+        return voiceLine;
     }
 
     public void Update()
@@ -173,14 +180,27 @@ public class Baatcheet : MonoBehaviour
         // display speaker
         speakerIcon.sprite = baatein[baatIndex].GetSpeaker();
         currentBaat = baatein[baatIndex];
+        GameManager.Instance.ChangeVoiceClip(currentBaat.GetVoiceLine());
 
+        // check what baat is going on
+        switch (currentBaat.GetFullbaat())
+        {
+            case "Are you ready?":
+                GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[2]);
+                break;
+            case "places rock":
+                GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[7]);
+                break;
+            
+
+        }
     }
 
     public static void Add(BaatScriptableObject scrBaat)
     {
         for(int i = 0; i < scrBaat.baatList.Count; i++)
         {
-            Baat typeBaat = new Baat(scrBaat.baatList[i].baat, scrBaat.baatList[i].speaker, deactivateCallBack: Deactivate);
+            Baat typeBaat = new Baat(scrBaat.baatList[i].baat, scrBaat.baatList[i].speaker,scrBaat.baatList[i].audioClip, Deactivate);
             instance.baatein.Add(typeBaat);
         }
     }
@@ -194,6 +214,8 @@ public class Baatcheet : MonoBehaviour
         instance.currentBaat = null;
         instance.speakerIcon.sprite = null;
         instance.baatIndex = 0;
+        GameManager.Instance.ChangeAudioToDefault();
+        GameManager.Instance.RemoveVoiceClip();
     }
 
     public static void Activate()
@@ -203,6 +225,7 @@ public class Baatcheet : MonoBehaviour
         instance.transform.GetChild(2).gameObject.SetActive(true);
         instance.currentBaat = instance.baatein[0];
         instance.speakerIcon.sprite = instance.baatein[0].GetSpeaker();
+        GameManager.Instance.ChangeVoiceClip(instance.baatein[0].GetVoiceLine());
     }
 
 }
