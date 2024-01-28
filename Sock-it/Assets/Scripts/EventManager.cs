@@ -18,6 +18,9 @@ public class EventManager : MonoBehaviour
     public delegate void Interact(GameManager.Interaction interaction);
     public static event Interact onInteract;
 
+    public delegate void EndInteraction();
+    public static event EndInteraction onEndInteraction;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +62,14 @@ public class EventManager : MonoBehaviour
         if (onInteract != null)
         {
             onInteract(interaction);
+        }
+    }
+
+    public static void OnEndInteraction()
+    {
+        if (onEndInteraction != null)
+        {
+            onEndInteraction();
         }
     }
 

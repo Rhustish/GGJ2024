@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         EventManager.onTakeDamage += ReduceHealth;
         EventManager.onHeal += IncreaseHealth;
         EventManager.onInteract += ShowInteractionText;
+        EventManager.onEndInteraction += EndInteraction;
     }
 
     private void Awake()
@@ -95,6 +96,8 @@ public class GameManager : MonoBehaviour
     {
         EventManager.onTakeDamage -= ReduceHealth;
         EventManager.onHeal -= IncreaseHealth;
+        EventManager.onInteract -= ShowInteractionText;
+        EventManager.onEndInteraction -= EndInteraction;
     }
 
     #endregion
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Interacting;
         interaction = inter;
+        Player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         switch (interaction)
         {
             case Interaction.tie:
@@ -135,6 +139,12 @@ public class GameManager : MonoBehaviour
 
         }
 
+    }
+
+    public void EndInteraction()
+    {
+        interaction = Interaction.None;
+        gameState = GameState.Playing;
     }
 
     public void CheckAndChangeHealthColor()

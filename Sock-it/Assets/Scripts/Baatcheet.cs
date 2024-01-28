@@ -119,6 +119,11 @@ public class Baatcheet : MonoBehaviour
 
     //private Sprite speaker = null;
 
+    private void OnEnable()
+    {
+        EventManager.onEndInteraction += Deactivate;
+    }
+
     private void Awake()
     {
         instance = this;
@@ -142,6 +147,10 @@ public class Baatcheet : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        EventManager.onEndInteraction -= Deactivate;
+    }
 
     public void WriteNextBaatInQueue()
     {
@@ -157,7 +166,7 @@ public class Baatcheet : MonoBehaviour
         {
             currentBaat = null;
             baatText.text = "";
-            Deactivate();
+            EventManager.OnEndInteraction();
             return;
         }
 

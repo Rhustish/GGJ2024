@@ -217,17 +217,25 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D obj)
     {
-        if(obj.gameObject.name == "Kachha")
+        switch(obj.gameObject.name)
         {
-            if(moja.suidhaga > 0)
-            {
-                moja.suidhaga--;
-                EventManager.OnInteract(GameManager.Interaction.Kachha2);
-            }
-            else
-            {
-                EventManager.OnInteract(GameManager.Interaction.Kachha1);
-            }
+            case "Kachha":
+                if (moja.suidhaga > 0)
+                {
+                    moja.suidhaga--;
+                    EventManager.OnInteract(GameManager.Interaction.Kachha2);
+                }
+                else
+                {
+                    EventManager.OnInteract(GameManager.Interaction.Kachha1);
+                }
+                break;
+            case "Mr. Tie":
+                EventManager.OnInteract(GameManager.Interaction.tie);
+                break;
+            
+            //case ""
+
         }
     }
 
