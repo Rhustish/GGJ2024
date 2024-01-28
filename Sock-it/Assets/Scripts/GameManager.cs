@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         Playing,
         Paused,
+        Interacting,
         GameOver
     }
 
@@ -28,6 +29,13 @@ public class GameManager : MonoBehaviour
         Dead
     }
 
+    public enum Interaction
+    {
+        None,
+        Kachha
+    }
+
+    public Interaction interaction;
     public GameState gameState;
     public PlayerState playerState;
 
@@ -75,6 +83,12 @@ public class GameManager : MonoBehaviour
 
 
     #region Custom methods
+
+    public void ShowInteractionText()
+    {
+        gameState = GameState.Interacting;
+
+    }
 
     public void CheckAndChangeHealthColor()
     {

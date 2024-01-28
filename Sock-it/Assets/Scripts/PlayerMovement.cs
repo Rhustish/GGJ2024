@@ -39,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Camera mainLevelCamera;
 
+    public SpriteRenderer mojaSprite;
+
+    public Animator mojaAnimator;
+
     #endregion
 
 
@@ -61,75 +65,98 @@ public class PlayerMovement : MonoBehaviour
         moja.cheese = 0;
         moja.inPlug = false;
         moja.stone = 0;
+        mojaSprite = GetComponent<SpriteRenderer>();
+        mojaAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(moja.inPlug && Input.GetKeyDown(KeyCode.Q)){
-            killMachine();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (GameManager.Instance.playerState == GameManager.PlayerState.Alive && GameManager.Instance.gameState == GameManager.GameState.Playing)
         {
-            SceneManager.LoadScene("RockPaperScissors", LoadSceneMode.Additive);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // StopCoroutine(escapeRoutine());
-            StopAllCoroutines();
-            moja.isHurting = false;
-        }
-
-        // Debug.Log(moja.suidhaga);
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (moja.suidhaga > 0)
+            if (moja.inPlug && Input.GetKeyDown(KeyCode.Q))
             {
-                EventManager.OnHeal(25);
-                moja.suidhaga--;
+                killMachine();
             }
-        }
 
-        if (moja.health <= 0 && GameManager.Instance.playerState != GameManager.PlayerState.Dead)
-        {
-            EventManager.OnPlayerDeath();
-        }
-
-        // giving damage to player
-        //GameManager.Instance.playerMov.isTakeingDamage = true;
-
-        horizontal = Input.GetAxis("Horizontal");
-        if (horizontal != 0 && !moja.isHurting)
-        {
-            if (moja.isGrounded)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                rb.velocity = new Vector2(x: horizontal * moja.speed, y: moja.jumpForce);
+                SceneManager.LoadScene("RockPaperScissors", LoadSceneMode.Additive);
+
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                rb.velocity = new Vector2(x: horizontal * moja.speed, y: rb.velocity.y);
+                // StopCoroutine(escapeRoutine());
+                StopAllCoroutines();
+                moja.isHurting = false;
             }
+
+            // Debug.Log(moja.suidhaga);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (moja.suidhaga > 0)
+                {
+                    EventManager.OnHeal(25);
+                    moja.suidhaga--;
+                }
+            }
+
+            if (moja.health <= 0 && GameManager.Instance.playerState != GameManager.PlayerState.Dead)
+            {
+                EventManager.OnPlayerDeath();
+            }
+
+            // giving damage to player
+            //GameManager.Instance.playerMov.isTakeingDamage = true;
+
+            horizontal = Input.GetAxis("Horizontal");
+            if (horizontal != 0 && !moja.isHurting)
+            {
+                if (horizontal > 0)
+                {
+                    mojaSprite.flipX = false;
+                }
+                else
+                {
+                    mojaSprite.flipX = true;
+                }
+                mojaAnimator.SetBool("isMoving", true);
+                if (moja.isGrounded)
+                {
+                    rb.velocity = new Vector2(x: horizontal * moja.speed, y: moja.jumpForce);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(x: horizontal * moja.speed, y: rb.velocity.y);
+                }
+            }
+            else if (horizontal == 0)
+            {
+                mojaAnimator.SetBool("isMoving", false);
+            }
+
+            if (isTakeingDamage)
+            {
+                EventManager.OnTakeDamage(10);
+                isTakeingDamage = false;
+            }
+
+            //Debug.Log(horizontal);
+
+            if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded && !moja.isHurting)
+            {
+                mojaAnimator.SetBool("isHighJump", true);
+                rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce * 2);
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                mojaAnimator.SetBool("isHighJump", false);
+            }
+
+            moja.isGrounded = Physics2D.Raycast(origin: transform.position, direction: Vector2.down, distance: rayCastLength, groundLayerMask);
         }
-
-        if (isTakeingDamage)
-        {
-            EventManager.OnTakeDamage(10);
-            isTakeingDamage = false;
-        }
-
-        //Debug.Log(horizontal);
-
-        if (Input.GetKeyDown(KeyCode.Space) && moja.isGrounded && !moja.isHurting)
-        {
-            rb.velocity = new Vector2(x: rb.velocity.x, y: moja.jumpForce * 2);
-        }
-
-        moja.isGrounded = Physics2D.Raycast(origin: transform.position, direction: Vector2.down, distance: rayCastLength, groundLayerMask);
-
     }
 
     void OnCollisionEnter2D(Collision2D obj)
@@ -185,6 +212,14 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit2D(Collision2D obj){
         if(obj.gameObject.CompareTag("Plug")){
             moja.inPlug = false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D obj)
+    {
+        if(obj.gameObject.name == "Kachha")
+        {
+            EventManager.OnInteract(GameManager.Interaction.Kachha);
         }
     }
 

@@ -15,6 +15,9 @@ public class EventManager : MonoBehaviour
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
 
+    public delegate void Interact(GameManager.Interaction interaction);
+    public static event Interact onInteract;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,14 @@ public class EventManager : MonoBehaviour
         if (onPlayerDeath != null)
         {
             onPlayerDeath();
+        }
+    }
+
+    public static void OnInteract(GameManager.Interaction interaction)
+    {
+        if (onInteract != null)
+        {
+            onInteract(interaction);
         }
     }
 
