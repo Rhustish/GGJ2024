@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
-  m_Name: baatein
+  m_Name: rat-2
   m_EditorClassIdentifier: 
-  baatein:
-  - currentBaat: hehe baat
-  - currentBaat: hehehe another baat
-  - currentBaat: dhat teri maa ki chut
+  baatein: []
+  baatList: []

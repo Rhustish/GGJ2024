@@ -219,7 +219,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if(obj.gameObject.name == "Kachha")
         {
-            EventManager.OnInteract(GameManager.Interaction.Kachha);
+            if(moja.suidhaga > 0)
+            {
+                moja.suidhaga--;
+                EventManager.OnInteract(GameManager.Interaction.Kachha2);
+            }
+            else
+            {
+                EventManager.OnInteract(GameManager.Interaction.Kachha1);
+            }
         }
     }
 

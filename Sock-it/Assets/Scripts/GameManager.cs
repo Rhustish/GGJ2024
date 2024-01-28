@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
 
     public Slider healthBar;
 
+    public Baatcheet baatWriter;
+
+    public List<BaatScriptableObject> scriptObjects;
+
+    public BaatCheetHelper helper;
+
     public enum GameState
     {
         Playing,
@@ -32,7 +38,14 @@ public class GameManager : MonoBehaviour
     public enum Interaction
     {
         None,
-        Kachha
+        Kachha1,
+        Kachha2,
+        tie,
+        scissors1,
+        scissors2,
+        magicalMoja,
+        rat1,
+        rat2
     }
 
     public Interaction interaction;
@@ -47,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         EventManager.onTakeDamage += ReduceHealth;
         EventManager.onHeal += IncreaseHealth;
+        EventManager.onInteract += ShowInteractionText;
     }
 
     private void Awake()
@@ -65,12 +79,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         healthBar.value = 100;
+        helper = GetComponent<BaatCheetHelper>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            baatWriter.WriteNextBaatInQueue();
+        }
     }
 
     private void OnDisable()
@@ -84,9 +102,38 @@ public class GameManager : MonoBehaviour
 
     #region Custom methods
 
-    public void ShowInteractionText()
+    public void ShowInteractionText(Interaction inter)
     {
         gameState = GameState.Interacting;
+        interaction = inter;
+        switch (interaction)
+        {
+            case Interaction.tie:
+                helper.StartInteraction(scriptObjects[0]);
+                break;
+            case Interaction.Kachha1:
+                helper.StartInteraction(scriptObjects[1]);
+                break;
+            case Interaction.scissors1:
+                helper.StartInteraction(scriptObjects[2]);
+                break;
+            case Interaction.scissors2:
+                helper.StartInteraction(scriptObjects[3]);
+                break;
+            case Interaction.magicalMoja:
+                helper.StartInteraction(scriptObjects[4]);
+                break;
+            case Interaction.Kachha2:
+                helper.StartInteraction(scriptObjects[5]);
+                break;
+            case Interaction.rat1:
+                helper.StartInteraction(scriptObjects[6]);
+                break;
+            case Interaction.rat2:
+                helper.StartInteraction(scriptObjects[7]);
+                break;
+
+        }
 
     }
 

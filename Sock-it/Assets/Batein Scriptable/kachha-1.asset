@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ce58d5727ed7a49a4d41a08cb2a8af, type: 3}
+  m_Name: kachha-1
+  m_EditorClassIdentifier: 
+  baatList:
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: HA HA HA, You hath finally arriveth for me help!
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "uh.. But I never asked for any\u2026?"
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: Fear not Child! A curious mind always wandereth.
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Look wal-mart shakespeare , I have stuff to do, so go enact your play somewhere
+      else
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: " Don\u2019t thou want to know where thou lovely sockette be?"
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: '?'
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: (Knickers snickers) hehehe I hath trappeth thou attention
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: Alright you have 2 minutes.
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: Nuh uh uhh. Not that easy
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: '?'
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: "Thou shall do me A favour\u2026 "
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "Sighs, I\u2019m Listening"
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: Aye, woe is me, a patchwork quilt of holes! My seams sing opera, my threads,
+      they fray in dole! Stitch me, good bard, or to oblivion I roll!
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: "\u2026what?"
+  - speaker: {fileID: 21300000, guid: f6920a24fc932774ba75385cf925dd81, type: 3}
+    baat: "(sad) just get me a needle and thread and i\u2019ll give you the directions
+      to sockette."
+  - speaker: {fileID: 21300000, guid: 2d188b2b41a509d4db658e06cea16f7a, type: 3}
+    baat: aight

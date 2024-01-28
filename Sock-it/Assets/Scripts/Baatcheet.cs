@@ -17,11 +17,16 @@ public class Baat
     private string displayBaat = null;
 
     private Action onActionCallback = null;
+    private Action DeactivateCall = null;
 
-    public Baat(string baat, Action callback = null)
+    private Sprite speaker = null;
+
+    public Baat(string baat, Sprite bolnewaala, Action deactivateCallBack, Action callback = null)
     {
         onActionCallback = callback;
         currentBaat = baat;
+        speaker = bolnewaala;
+        DeactivateCall = deactivateCallBack;
     }
 
     public void Callback()
@@ -29,6 +34,14 @@ public class Baat
         if(onActionCallback != null)
         {
             onActionCallback();
+        }
+    }
+
+    public void DeactivateCallBack()
+    {
+        if (DeactivateCall != null)
+        {
+            DeactivateCall();
         }
     }
 
@@ -51,27 +64,31 @@ public class Baat
         return displayBaat;
     }
 
+    public Sprite GetSpeaker()
+    {
+           return speaker;
+    }
+
     public void Update()
     {
-        if(string.IsNullOrEmpty(currentBaat))
-        {
-            return;
-        }
-
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
             timer += timerPerChar;
             charIndex++;
-            if(charIndex <= currentBaat.Length)
+            if (currentBaat != null)
             {
-                displayBaat = currentBaat[..charIndex];
-                displayBaat += "<color=black>" + displayBaat[charIndex..] + "</color>";
+                if (charIndex <= currentBaat.Length)
+                {
+                    displayBaat = currentBaat[..charIndex];
+                    displayBaat += "<color=black>" + displayBaat[charIndex..] + "</color>";
+                }
             }
-            if(charIndex >= currentBaat.Length)
+            else if(charIndex >= currentBaat.Length)
             {
                 Callback();
                 currentBaat = null;
+                charIndex = 0;
             }
         }
 
@@ -92,12 +109,15 @@ public class Baatcheet : MonoBehaviour
 {
 
     public TextMeshProUGUI baatText;
+    public Image speakerIcon;
 
     private static Baatcheet instance = null;
     private List<Baat> baatein = new();
 
     private Baat currentBaat = null;
     private int baatIndex = 0;
+
+    //private Sprite speaker = null;
 
     private void Awake()
     {
@@ -107,7 +127,9 @@ public class Baatcheet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -129,32 +151,49 @@ public class Baatcheet : MonoBehaviour
             currentBaat = null;
             return;
         }
-
         baatIndex++;
 
         if(baatIndex >= baatein.Count)
         {
             currentBaat = null;
             baatText.text = "";
+            Deactivate();
             return;
         }
 
+        // display speaker
+        speakerIcon.sprite = baatein[baatIndex].GetSpeaker();
         currentBaat = baatein[baatIndex];
 
     }
 
     public static void Add(BaatScriptableObject scrBaat)
     {
-        for(int i = 0; i < scrBaat.baatein.Count; i++)
+        for(int i = 0; i < scrBaat.baatList.Count; i++)
         {
-            Baat typeBaat = new Baat(scrBaat.baatein[i].GetFullbaat());
+            Baat typeBaat = new Baat(scrBaat.baatList[i].baat, scrBaat.baatList[i].speaker, deactivateCallBack: Deactivate);
             instance.baatein.Add(typeBaat);
         }
     }
 
+    public static void Deactivate()
+    {
+        instance.baatein.Clear();
+        instance.transform.GetChild(0).gameObject.SetActive(false);
+        instance.transform.GetChild(1).gameObject.SetActive(false);
+        instance.transform.GetChild(2).gameObject.SetActive(false);
+        instance.currentBaat = null;
+        instance.speakerIcon.sprite = null;
+        instance.baatIndex = 0;
+    }
+
     public static void Activate()
     {
+        instance.transform.GetChild(0).gameObject.SetActive(true);
+        instance.transform.GetChild(1).gameObject.SetActive(true);
+        instance.transform.GetChild(2).gameObject.SetActive(true);
         instance.currentBaat = instance.baatein[0];
+        instance.speakerIcon.sprite = instance.baatein[0].GetSpeaker();
     }
 
 }

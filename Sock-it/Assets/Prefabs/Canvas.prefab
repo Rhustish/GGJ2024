@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baatText: {fileID: 6616373091575429032}
+  speakerIcon: {fileID: 0}
 --- !u!1 &6008921612483786206
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +627,6 @@ GameObject:
   - component: {fileID: 1635121672960655884}
   - component: {fileID: 6083018691677283474}
   - component: {fileID: 5305463444841643390}
-  - component: {fileID: 3690588814022746361}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Player
@@ -719,16 +719,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3690588814022746361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620106955602148369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5f87bc4d292914f9c3760059c17735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baatScriptableObject: {fileID: 11400000, guid: 02599b6c2778fda449d5b543a38d8487, type: 2}
