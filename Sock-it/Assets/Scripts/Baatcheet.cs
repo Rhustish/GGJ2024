@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -191,9 +192,19 @@ public class Baatcheet : MonoBehaviour
             case "places rock":
                 GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[7]);
                 break;
-            
 
+            case "Nothing…nothing…":
+                //yield return new WaitForSeconds(2f);
+                StartCoroutine(stopAndPlayEndScene());
+                break;
         }
+    }
+
+    IEnumerator stopAndPlayEndScene()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.comicAnimator.SetBool("isEnd", true);
+        //GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[8]);
     }
 
     public static void Add(BaatScriptableObject scrBaat)

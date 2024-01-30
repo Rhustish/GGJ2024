@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource voiceLineSource;
 
+    public Animator comicAnimator;
+
 
     public enum GameState
     {
@@ -91,8 +93,9 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         healthBar.value = 100;
         helper = GetComponent<BaatCheetHelper>();
-        audioSource.clip = audioClips[0];
+        audioSource.clip = audioClips[9];
         defaultClip = audioClips[0];
+        StartCoroutine(stopandPlayMusic());
         voiceLineSource = transform.GetChild(0).GetComponent<AudioSource>();
 
     }
@@ -100,9 +103,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && gameState ==  GameState.Interacting)
         {
             baatWriter.WriteNextBaatInQueue();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
         }
     }
 
@@ -118,6 +126,18 @@ public class GameManager : MonoBehaviour
 
 
     #region Custom methods
+
+    IEnumerator stopandPlayMusic()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(7.5f);
+        audioSource.clip = audioClips[4];
+        audioSource.Play();
+        yield return new WaitForSeconds(10);
+        comicAnimator.SetBool("isIdle", true);
+        audioSource.clip = audioClips[0];
+        audioSource.Play();
+    }
 
     public void ShowInteractionText(Interaction inter)
     {

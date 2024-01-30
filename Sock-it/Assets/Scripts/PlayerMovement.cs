@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator mojaAnimator;
 
+    public GameObject stone;
+    public Animator comicAnimator;
+
     #endregion
 
 
@@ -58,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stone.SetActive(false);
         rb = GetComponent<Rigidbody2D>();
         isTakeingDamage = false;
         moja.health = 100;
@@ -220,9 +220,18 @@ public class PlayerMovement : MonoBehaviour
         switch(obj.gameObject.name)
         {
 
+            case "KitchenSlab":
+                comicAnimator.SetBool("isMojas", true);
+                GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[9]);
+                StartCoroutine(playMusic());
+                moja.cheese += 1;
+                break;
+
+
             case "BedroomEnding":
-                GameManager.Instance.audioSource.clip = GameManager.Instance.audioClips[1];
+                GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[1]);
                 GameManager.Instance.defaultClip = GameManager.Instance.audioClips[1];
+                GameManager.Instance.audioSource.volume = 0.15f;
                 break;
 
             case "Kachha":
@@ -242,16 +251,30 @@ public class PlayerMovement : MonoBehaviour
             case "Scissors":
                 if(moja.stone > 0)
                 {
+                    moja.stone--;
                     EventManager.OnInteract(GameManager.Interaction.scissors2);
 
                 }else
                 {
-                    moja.stone--;
+                    stone.SetActive(true);
                     EventManager.OnInteract(GameManager.Interaction.scissors1);
 
                 }
                 break;
+            case "Magical MOses":
+                EventManager.OnInteract(GameManager.Interaction.magicalMoja);
+                break;
 
+            case "Rat":
+                if(moja.cheese > 0)
+                {
+                    moja.cheese--;
+                    EventManager.OnInteract(GameManager.Interaction.rat2);
+                }else
+                {
+                    EventManager.OnInteract(GameManager.Interaction.rat1);
+                }
+                break;
 
         }
     }
@@ -272,6 +295,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     #region Custom methods
+
+    IEnumerator playMusic()
+    {
+        yield return new WaitForSeconds(10);
+        comicAnimator.SetBool("isMojas", false);
+        GameManager.Instance.ChangeAudio(GameManager.Instance.audioClips[0]);
+    }
 
     public void killMachine(){
         MashingWashine machine = GameObject.FindGameObjectWithTag("Wmachine").GetComponent<MashingWashine>();
